@@ -2,9 +2,10 @@ name: Monitor Odisseia
 
 on:
   schedule:
-    # A cada 15 minutos (horario UTC, mas o intervalo e o que importa)
-    - cron: "*/15 * * * *"
-  workflow_dispatch: # permite rodar manualmente pelo botao "Run workflow"
+    # De hora em hora. O GitHub respeita bem essa frequencia;
+    # a cada 15min ele descartava a maioria dos disparos.
+    - cron: "5 * * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,7 +17,7 @@ concurrency:
 jobs:
   checar:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 70
 
     steps:
       - name: Baixar repositorio
@@ -32,16 +33,34 @@ jobs:
           pip install playwright requests
           playwright install --with-deps chromium
 
-      - name: Rodar monitor
+      # Em vez de depender do cron a cada 15min (que o GitHub descarta),
+      # rodamos de hora em hora e repetimos internamente por ~55 minutos.
+      - name: Rodar monitor em loop
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python monitor.py
+        run: |
+          FIM=$(( $(date +%s) + 55*60 ))
+          RODADA=1
+          while true; do
+            echo "───────── rodada $RODADA ─────────"
+            python monitor.py || echo "rodada falhou, seguindo"
+            RODADA=$(( RODADA + 1 ))
+            AGORA=$(date +%s)
+            # Para se a proxima rodada nao couber na janela
+            if [ $(( AGORA + 600 )) -ge $FIM ]; then
+              echo "Janela encerrada."
+              break
+            fi
+            sleep 600
+          done
 
       - name: Salvar estado
+        if: always()
         run: |
           git config user.name "monitor-bot"
           git config user.email "monitor-bot@users.noreply.github.com"
+          git pull --rebase --autostash || true
           git add sessoes_vistas.json
           if git diff --staged --quiet; then
             echo "Nada mudou."
@@ -49,4 +68,3 @@ jobs:
             git commit -m "Atualiza sessoes vistas [skip ci]"
             git push
           fi
-
