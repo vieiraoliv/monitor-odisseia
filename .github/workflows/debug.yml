@@ -1,0 +1,33 @@
+name: Debug Ingresso
+
+# Roda so quando voce clicar em "Run workflow"
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnostico:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
+
+      - name: Rodar diagnostico
+        run: python debug.py
+
+      - name: Publicar arquivos de debug
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-ingresso
+          path: debug/
+          retention-days: 5
