@@ -1,6 +1,7 @@
 {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   "atualizado_em": "2026-08-15T10:40:42.829165-03:00",
 =======
   "atualizado_em": "2026-08-15T11:35:08.369993-03:00",
@@ -8,9 +9,11 @@
 =======
   "atualizado_em": "2026-08-15T12:30:01.680517-03:00",
 >>>>>>> Stashed changes
+=======
+  "atualizado_em": "2026-08-15T13:24:37.347976-03:00",
+>>>>>>> Stashed changes
   "baseline_feito": true,
   "sessoes": [
-    "2026-08-15|12:15|IMAX|LEGENDADO",
     "2026-08-15|18:00|IMAX|LEGENDADO",
     "2026-08-15|21:30|IMAX|LEGENDADO",
     "2026-08-16|12:15|IMAX|LEGENDADO",
