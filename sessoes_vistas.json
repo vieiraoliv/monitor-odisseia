@@ -1,12 +1,12 @@
 {
-<<<<<<< Updated upstream
-  "atualizado_em": "2026-08-24T02:42:31.353422-03:00",
-=======
-  "atualizado_em": "2026-08-24T03:34:11.621088-03:00",
->>>>>>> Stashed changes
+  "atualizado_em": "2026-08-25T14:33:51.335197-03:00",
   "baseline_feito": true,
   "sessoes": [
-    "2026-08-23|18:00|IMAX|LEGENDADO",
-    "2026-08-23|21:30|IMAX|LEGENDADO"
+    "2026-08-29|12:00|IMAX|LEGENDADO",
+    "2026-08-29|18:00|IMAX|LEGENDADO",
+    "2026-08-29|21:30|IMAX|LEGENDADO",
+    "2026-08-30|12:00|IMAX|LEGENDADO",
+    "2026-08-30|18:00|IMAX|LEGENDADO",
+    "2026-08-30|21:30|IMAX|LEGENDADO"
   ]
 }
