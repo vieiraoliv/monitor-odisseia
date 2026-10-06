@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-10-06T12:50:21.897453-03:00",
+  "atualizado_em": "2026-10-06T18:04:34.958703-03:00",
   "baseline_feito": true,
   "sessoes": [
     "2026-08-29|12:00|IMAX|LEGENDADO",
@@ -22,6 +22,8 @@
     "2026-09-13|11:00|IMAX|LEGENDADO",
     "2026-09-13|14:30|IMAX|DUBLADO",
     "2026-09-13|18:00|IMAX|LEGENDADO",
-    "2026-09-13|21:30|IMAX|LEGENDADO"
+    "2026-09-13|21:30|IMAX|LEGENDADO",
+    "2026-10-10|14:40|IMAX|LEGENDADO",
+    "2026-10-11|14:40|IMAX|LEGENDADO"
   ]
 }
